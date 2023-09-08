@@ -1,14 +1,10 @@
-line = 'abcd'
-tuple_list = (10, 20, 30, 40)
-print('Строка:', line)
-print('Кортеж чисел:', tuple_list)
-res = ((line[i], tuple_list[i]) for i in range(min(len(line), len(tuple_list))))
-print('Результат:')
-for i in res:
-    print(i)
+def find_fibonacci(N):
+	if N == 1 or N == 2:
+		return 1
+	return find_fibonacci(N - 1) + find_fibonacci(N - 2)
 
-
-
+res = find_fibonacci(125)
+print(res)
 
 
 

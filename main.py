@@ -1,16 +1,16 @@
-def find_fibonacci(N):
-	if N == 1 or N == 2:
-		return 1
-	return find_fibonacci(N - 1) + find_fibonacci(N - 2)
+def recursive_flatten_generator(array: Iterable) -> List:
+    """
+    Recursive algorithm
+    Looks like recursive_flatten_iterator, but with extend/append
 
-res = find_fibonacci(125)
-print(res)
-
-
-
-
-
-
+    """
+    lst = []
+    for i in array:
+        if isinstance(i, list):
+            lst.extend(recursive_flatten_generator(i))
+        else:
+            lst.append(i)
+    return lst
 
 
 

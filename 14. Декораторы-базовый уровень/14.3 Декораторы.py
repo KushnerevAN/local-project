@@ -31,10 +31,8 @@ def time_track(func):
 
     return surrogate
 
-
 @time_track
 def hard_func():
     return [x ** 2 ** x for x in range(22)]
-
 
 hard_func()

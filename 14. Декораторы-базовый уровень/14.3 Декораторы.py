@@ -1,5 +1,4 @@
 #Задача 1. Двойной вызов
-
 #from typing import Callable, Any
 
 #def do_twice(func: Callable) -> Any:

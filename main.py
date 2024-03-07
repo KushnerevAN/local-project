@@ -1,26 +1,28 @@
-class NewInt(int):
+
+class User:
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def get_info(self):
+        return (f'Имя пользователя: {self.username}')
+
+class Authentication(User):
     pass
 
-    def repeat(self, n=2):
-        res = ''
-        for i in range(n):
-            res += str(self)
-        return int(res)
+    def authenticate(self, new_name, new_password):
+        return new_name == self.username and new_password == self.password
 
-    def to_bin(self):
-        return int(bin(self)[2:])
+class AuthenticatedUser(Authentication, User):
+    pass
 
+assert issubclass(AuthenticatedUser, User) is True
+assert issubclass(AuthenticatedUser, Authentication) is True
 
-c1 = NewInt(9)
-assert isinstance(c1, NewInt)
-assert issubclass(NewInt, int)
-assert c1 + 9 == 18
-assert c1 * 9 == 81
+user1 = AuthenticatedUser('user1', 'password1')
+assert user1.get_info() == 'Имя пользователя: user1'
+assert user1.authenticate('user1', 'password2') is False
+assert user1.authenticate('user1', 'password1') is True
 
-c2 = NewInt(31)
-assert c2.repeat() == 3131
-assert c2.repeat(4) == 31313131
-assert NewInt(16).to_bin() == 10000
-assert NewInt(14).to_bin() == 1110
-
-print('Good')
+ted = AuthenticatedUser('ted_lawyer', 'alligator3')
+print(ted.get_info())

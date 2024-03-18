@@ -1,28 +1,27 @@
+class CustomButton:
+    def __init__(self, text, **kwargs):
+        self.text = text
 
-class User:
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+        def metod(self):
+            self.kwargs = kwargs
 
-    def get_info(self):
-        return (f'Имя пользователя: {self.username}')
+    def config(self, **kwargs):
+        self.__dict__.update(kwargs)
 
-class Authentication(User):
-    pass
+    def click(self):
+        try:
+            self.command()
+        except AttributeError:
+            print('Кнопка не настроена')
+        except TypeError:
+            print('Кнопка сломалась')
 
-    def authenticate(self, new_name, new_password):
-        return new_name == self.username and new_password == self.password
+def func():
+    print('Оно живое')
 
-class AuthenticatedUser(Authentication, User):
-    pass
+btn = CustomButton(text="Hello", bd=20, bg='#ffaaaa')
+btn.click()  # Кнопка не настроена
+btn.config(command=func)
+btn.click()  # Оно живое
 
-assert issubclass(AuthenticatedUser, User) is True
-assert issubclass(AuthenticatedUser, Authentication) is True
 
-user1 = AuthenticatedUser('user1', 'password1')
-assert user1.get_info() == 'Имя пользователя: user1'
-assert user1.authenticate('user1', 'password2') is False
-assert user1.authenticate('user1', 'password1') is True
-
-ted = AuthenticatedUser('ted_lawyer', 'alligator3')
-print(ted.get_info())

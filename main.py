@@ -24,7 +24,7 @@ class Cart:
         if 1 > value > 100:
             raise ValueError('Неправильное значение скидки')
         self.discount = sum(self.total) * value / 100
-        return sum(self.total) - self.discount
+
 
 
 
